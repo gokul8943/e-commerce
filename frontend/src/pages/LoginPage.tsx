@@ -31,7 +31,7 @@ const LoginPage = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="email"
                     required
                   />
                 </div>
@@ -40,7 +40,7 @@ const LoginPage = () => {
                   <Input
                     id="password"
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="password"
                     required
                   />
                 </div>
@@ -59,7 +59,7 @@ const LoginPage = () => {
                     Forgot password?
                   </Button>
                 </div>
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full bg-blue-700">
                   Sign in
                 </Button>
               </form>

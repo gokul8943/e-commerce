@@ -39,15 +39,16 @@ console.log(setCartCount);
           {/* Logo and Brand */}
           <div className="flex items-center space-x-2">
             <ShoppingBag className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold">ShopHub</span>
+            <span className="text-xl font-bold text-blue-700">ShopHub</span>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-3">
+            <Button variant="ghost" className='text-blue-600 text-base font-semibold'>Home</Button>
             {/* Categories Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost">Categories</Button>
+                <Button variant="ghost" className='text-blue-600 text-base font-semibold'>Categories</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 {categories.map((category) => (
@@ -77,12 +78,12 @@ console.log(setCartCount);
               <Heart className="h-5 w-5" />
             </Button>
             <Button variant="ghost" size="icon">
-              <User className="h-5 w-5" />
+              <User className="h-8 w-8" />
             </Button>
             <Button variant="ghost" size="icon" className="relative">
-              <ShoppingCart className="h-5 w-5" />
+              <ShoppingCart className="h-7 w-7" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-blue-700 text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
                   {cartCount}
                 </span>
               )}

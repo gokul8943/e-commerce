@@ -29,7 +29,7 @@ const SignupPage = () => {
                     <Label htmlFor="firstName">Name</Label>
                     <Input
                       id="firstName"
-                      placeholder="John"
+                      placeholder="Name"
                       required
                     />
                   </div>
@@ -40,7 +40,7 @@ const SignupPage = () => {
                   <Input
                     id="email"
                     type="email"
-                    placeholder="m@example.com"
+                    placeholder="email"
                     required
                   />
                 </div>
@@ -50,7 +50,7 @@ const SignupPage = () => {
                   <Input
                     id="password"
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="password"
                     required
                   />
                 </div>
@@ -60,7 +60,7 @@ const SignupPage = () => {
                   <Input
                     id="confirmPassword"
                     type="password"
-                    placeholder="••••••••"
+                    placeholder="password"
                     required
                   />
                 </div>
@@ -78,13 +78,13 @@ const SignupPage = () => {
                       Terms of Service
                     </Button>
                     {" "}and{" "}
-                    <Button variant="link" className="px-1 h-auto">
+                    <Button variant="link" className="px-1 h-auto ">
                       Privacy Policy
                     </Button>
                   </Label>
                 </div>
 
-                <Button type="submit" className="w-full">
+                <Button type="submit" className="w-full bg-blue-700">
                   Create Account
                 </Button>
               </form>
