@@ -1,3 +1,4 @@
+import CategoryCard from "@/components/CategoryCard"
 import HomeBanner from "@/components/HomeBanner"
 
 const HomePage = () => {
@@ -5,6 +6,7 @@ const HomePage = () => {
     <div>
       <div className="p-2.5">
       <HomeBanner />
+      <CategoryCard />
       </div>
       
     </div>
