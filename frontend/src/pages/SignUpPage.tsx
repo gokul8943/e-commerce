@@ -15,8 +15,6 @@ const SignupPage = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* Logo and Header */}
-      
-
         <Card>
           <CardHeader>
             <CardTitle>Create your account</CardTitle>

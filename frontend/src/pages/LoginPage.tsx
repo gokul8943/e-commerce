@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/Input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
 import { Label } from "@/components/ui/Label";
 import { Separator } from "@/components/ui/Separator";
-import { ShoppingBag, Github, Mail } from "lucide-react";
+import { Github, Mail } from "lucide-react";
 
 const LoginPage = () => {
   const handleSubmit = (e:any) => {
@@ -15,14 +15,6 @@ const LoginPage = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full">
         {/* Logo and Header */}
-        <div className="flex flex-col items-center space-y-2 mb-6">
-          <div className="bg-primary rounded-full p-2">
-            <ShoppingBag className="w-6 h-6 text-white" />
-          </div>
-          <h1 className="text-2xl font-bold">ShopHub</h1>
-          <p className="text-gray-500">Welcome back! Please login to continue.</p>
-        </div>
-
         <Card>
           <CardHeader>
             <CardTitle>Login to your account</CardTitle>
