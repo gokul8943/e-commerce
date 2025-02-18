@@ -7,8 +7,8 @@ import Navbar from "./components/Navbar"
 const App = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
-      <div className="relative z-50 pt-20">
       <Navbar />
+      <div className=" pt-[50px]">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUpPage />} />
