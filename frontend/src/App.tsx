@@ -8,7 +8,7 @@ const App = () => {
   return (
     <div className="min-h-screen relative overflow-hidden">
       <Navbar />
-      <div className=" pt-[50px]">
+      <div className="pt-[20px]">
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/signup" element={<SignUpPage />} />

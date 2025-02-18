@@ -1,55 +1,147 @@
-import { ShoppingCart, UserPlus, LogIn, LogOut, Lock } from 'lucide-react'
-import { Link } from 'react-router-dom'
-const Navbar = () => {
+import { useState } from 'react';
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import {
+  ShoppingCart,
+  Search,
+  User,
+  Heart,
+  Menu,
+  X,
+  ShoppingBag
+} from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu";
 
-  const user = false
-  const isAdmin = true
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(3); 
+console.log(setCartCount);
+
+  const categories = [
+    "Electronics",
+    "Clothing",
+    "Home & Living",
+    "Books",
+    "Sports",
+    "Beauty"
+  ];
+
   return (
-    <div className='fixed top-0 left-0 w-full ng-gray-900 bg-opacity-90 backdrop-blur-md shadow-lg z-40 transition-all duration-300 border-b border-emrland-800'>
-      <div className='container mx-auto px-4 py-3'>
-        <div className='flex flex-wrap justify-between items-center'>
-        <Link to='/' className='tetx-2xl font-bold text-emerald-400 items-center space-x-2 flex'>E-commerce </Link>
-        <nav className='flex flex-wrap items-center gap-4'>
-          <Link to='/' className='text-emerald-600 hover:text-emerland-400 transition duration-300 ease-in-out' >Home</Link>
-          {user && (
-            <Link to={'/cart'}
-            className='relative group text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out'
-            >
-              <ShoppingCart className='inline-block mr-1 group-hover:text-emerald-400 ' size={20} />
-              <span className='hidden sm:inline'>Cart</span>
-              <span className='absolute -top-2 -right-2 bg-emerald-500 text-white rounded-full px-2 py-0.5 text-xs group-hover:bg-emerald-400 transition duration-300 ease-in-out'>
-                3
-              </span>
-            </Link>
-          )}
-        {isAdmin && (
-            <Link to={''} 
-            className='bg-emerald-700 hover:bg-emerald-600 text-white px-3 py-1 rounded-md font-medium transition duration-300 ease-in-out flex items-center'
-            >
-              <Lock className='inline-block mr-1' size={18}/>
-              <span className='hidden sm:inline'>Dashboard</span>
-            </Link>
-        )}
-        {user ? (
-          <button className='bg-gray-700 hover:bg-gray-600 text-white py-2 px-4 rounded-md flex items-center transition duration-300 ease-in-out'>
-           <LogOut  size={18}/>
-           <span className='hidden sm:inline ml-2'>Log Out </span>
-          </button>
-        ):(
-          <>
-          <Link to={'/signup'} className='bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 rounded-md flex items-center transition duration-300 ease-in-out'>
-            <UserPlus className='mr-2' size={18}/>
-          </Link>
-          <Link to={'/login'} className='bg-emerald-600 hover:bg-emerald-700 text-white py-2 px-4 rounded-md flex items-center transition duration-300 ease-in-out'>
-            <LogIn className='mr-2' size={18}/>
-          </Link>
-          </>
-        )}
-        </nav>
+    <nav className="border-b fixed z-20 w-full shadow-md bg-white/90">
+      {/* Main Navbar */}
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo and Brand */}
+          <div className="flex items-center space-x-2">
+            <ShoppingBag className="h-6 w-6 text-primary" />
+            <span className="text-xl font-bold">ShopHub</span>
+          </div>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {/* Categories Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost">Categories</Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                {categories.map((category) => (
+                  <DropdownMenuItem key={category}>
+                    {category}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+
+            {/* Search Bar */}
+            <div className="flex items-center max-w-md w-full">
+              <div className="relative w-full">
+                <Input
+                  type="search"
+                  placeholder="Search products..."
+                  className="w-full pr-10"
+                />
+                <Search className="absolute right-3 top-2.5 h-5 w-5 text-gray-400" />
+              </div>
+            </div>
+          </div>
+
+          {/* Right Side Icons */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Button variant="ghost" size="icon">
+              <Heart className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon">
+              <User className="h-5 w-5" />
+            </Button>
+            <Button variant="ghost" size="icon" className="relative">
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </Button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
         </div>
       </div>
-    </div>
-  )
-}
 
-export default Navbar
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden border-t">
+          <div className="px-4 py-2">
+            <Input
+              type="search"
+              placeholder="Search products..."
+              className="w-full mb-2"
+            />
+            <div className="space-y-1">
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant="ghost"
+                  className="w-full justify-start"
+                >
+                  {category}
+                </Button>
+              ))}
+            </div>
+            <div className="flex justify-evenly border-t mt-2 pt-2">
+              <Button variant="ghost" size="icon">
+                <Heart className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="icon">
+                <User className="h-5 w-5" />
+              </Button>
+              <Button variant="ghost" size="icon" className="relative">
+                <ShoppingCart className="h-5 w-5" />
+                {cartCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                    {cartCount}
+                  </span>
+                )}
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;
