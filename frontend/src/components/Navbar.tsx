@@ -16,11 +16,13 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate()
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [cartCount, setCartCount] = useState(3); 
-console.log(setCartCount);
+  const [cartCount, setCartCount] = useState(3);
+  console.log(setCartCount);
 
   const categories = [
     "Electronics",
@@ -30,6 +32,9 @@ console.log(setCartCount);
     "Sports",
     "Beauty"
   ];
+  const handleHome = () => {
+    navigate('/')
+  }
 
   return (
     <nav className="border-b fixed z-20 w-full shadow-md bg-white/90">
@@ -37,18 +42,18 @@ console.log(setCartCount);
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Brand */}
-          <div className="flex items-center space-x-2">
+          <div onClick={handleHome} className="flex items-center space-x-2 cursor-pointer">
             <ShoppingBag className="h-6 w-6 text-primary" />
             <span className="text-xl font-bold text-blue-700">ShopHub</span>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" className='text-blue-600 text-base font-semibold'>Home</Button>
+            <Button variant="ghost" className='text-blue-600 text-base font-semibold cursor-pointer'>Home</Button>
             {/* Categories Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className='text-blue-600 text-base font-semibold'>Categories</Button>
+                <Button variant="ghost" className='text-blue-600 text-base font-semibold cursor-pointer'>Categories</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 {categories.map((category) => (
@@ -74,13 +79,13 @@ console.log(setCartCount);
 
           {/* Right Side Icons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="icon">
+            <Button variant="ghost" size="icon" className='cursor-pointer'>
               <Heart className="h-5 w-5" />
             </Button>
-            <Button variant="ghost" size="icon">
-              <User className="h-8 w-8" />
+            <Button variant="ghost" size="icon" className='cursor-pointer'>
+              <User className="h-8 w-8 " />
             </Button>
-            <Button variant="ghost" size="icon" className="relative">
+            <Button variant="ghost" size="icon" className="relative cursor-pointer">
               <ShoppingCart className="h-7 w-7" />
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-blue-700 text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">

@@ -4,12 +4,47 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Label } from "@/components/ui/Label";
 import { Separator } from "@/components/ui/Separator";
 import { Github, Mail } from "lucide-react";
-
+import { useState } from "react";
+import {message} from 'antd'
+import { useNavigate } from "react-router-dom";
+import { register } from "@/components/services/userAPi/userApi";
 const SignupPage = () => {
-  const handleSubmit = (e:any) => {
-    e.preventDefault();
-    // Add your signup logic here
-  };
+
+  const navigate = useNavigate()
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    confirmPassword: ""
+})
+
+const handleInputChange = (e: any) => {
+  const { name, value } = e.target;
+  setFormData({ ...formData, [name]: value });
+  // Clear validation error when input value changes
+};
+const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault()
+  try {
+      register(formData)
+          .then((response) => {
+              console.log('drres',response);
+              
+              if (response.status === 200 || response.status === 201) {
+                  message.success("Register Sucessfully",),
+                      navigate("/user/login");
+              }
+          })
+          .catch((error) => {
+              console.log(error);
+              message.error(error.response.data.message);
+          })
+  } catch (error) {
+      console.log(error);
+      message.error("Internal server error")
+  }
+}
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
