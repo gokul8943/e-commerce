@@ -22,7 +22,6 @@ const SignupPage = () => {
 const handleInputChange = (e: any) => {
   const { name, value } = e.target;
   setFormData({ ...formData, [name]: value });
-  // Clear validation error when input value changes
 };
 const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
   event.preventDefault()
