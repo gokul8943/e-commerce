@@ -7,7 +7,8 @@ import { Github, Mail } from "lucide-react";
 import { useState } from "react";
 import {message} from 'antd'
 import { useNavigate } from "react-router-dom";
-import { register } from "@/components/services/userAPi/userApi";
+import { register } from "@/services/user/user.api";
+
 const SignupPage = () => {
 
   const navigate = useNavigate()
