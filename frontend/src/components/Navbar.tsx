@@ -35,6 +35,9 @@ const Navbar = () => {
   const handleHome = () => {
     navigate('/')
   }
+  const handleShop = () => {
+    navigate('/shop')
+  }
 
   return (
     <nav className="border-b fixed z-20 w-full shadow-md bg-white/90">
@@ -49,7 +52,8 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button variant="ghost" className='text-blue-600 text-base font-semibold cursor-pointer'>Home</Button>
+            <Button onClick={handleHome} variant="ghost" className='text-blue-600 text-base font-semibold cursor-pointer'>Home</Button>
+            <Button onClick={handleShop} variant="ghost" className='text-blue-600 text-base font-semibold cursor-pointer'>Shop</Button>
             {/* Categories Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
