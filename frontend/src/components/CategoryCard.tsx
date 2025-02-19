@@ -1,11 +1,12 @@
-import { ArrowRight, Star } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import image from '../assets/images/airdopes1.png'
 
 const CategoryCard = ({
   title = "Premium Electronics",
   itemCount = 120,
-  imageUrl = "/api/placeholder/400/300",
+  imageUrl = image,
   discount = "20% OFF",
-  featured = true,
+  // featured = true,
   description = "Discover cutting-edge technology and exclusive deals"
 }) => {
   return (
@@ -16,13 +17,13 @@ const CategoryCard = ({
         </div>
       )}
       
-
+{/* 
       {featured && (
         <div className="absolute top-4 left-4 z-20 flex items-center gap-1 bg-lime-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">
           <Star className="w-4 h-4" />
           <span>Featured</span>
         </div>
-      )}
+      )} */}
 
     
       <div className="relative h-52 overflow-hidden">

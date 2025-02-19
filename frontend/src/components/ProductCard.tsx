@@ -1,11 +1,12 @@
 import { Heart, ShoppingCart } from 'lucide-react';
+import image from '../assets/images/category image.png'
 const ProductCard = ({ 
   title = "Classic White Sneakers",
   price = 99.99,
   originalPrice = 129.99,
   rating = 4.5,
   reviews = 128,
-  imageUrl = "/api/placeholder/300/300",
+  imageUrl = image,
   isNew = true,
   discount = 23
 }) => {
@@ -22,12 +23,12 @@ const ProductCard = ({
         {/* Badges */}
         <div className="absolute top-2 left-2 flex gap-2">
           {isNew && (
-            <span className="bg-blue-500 text-white px-2 py-1 text-xs font-semibold rounded">
+            <span className="bg-amber-500 text-white px-2 py-1 text-xs font-semibold rounded">
               NEW
             </span>
           )}
           {discount > 0 && (
-            <span className="bg-red-500 text-white px-2 py-1 text-xs font-semibold rounded">
+            <span className="bg-green-500 text-white px-2 py-1 text-xs font-semibold rounded">
               -{discount}%
             </span>
           )}
