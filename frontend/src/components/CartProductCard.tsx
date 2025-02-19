@@ -1,5 +1,6 @@
 import { Trash2, Plus, Minus, Heart } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/Card';
+import images from '../assets/images/airdopes1.png'
 
 const CartProductCard = ({ product = {
   id: 1,
@@ -7,7 +8,7 @@ const CartProductCard = ({ product = {
   price: 199.99,
   originalPrice: 249.99,
   quantity: 1,
-  image: "/api/placeholder/200/200",
+  image: images,
   color: "Space Gray",
   size: "One Size",
   brand: "TechPro",
@@ -27,8 +28,8 @@ const CartProductCard = ({ product = {
               className="w-32 h-32 object-cover rounded-xl shadow-sm group-hover:scale-105 transition-transform duration-300"
             />
             {discount > 0 && (
-              <div className="absolute -top-2 -left-2 bg-red-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-md">
-                -{discount}%
+              <div className="absolute -top-2 -left-2 bg-green-500 text-white text-xs font-medium px-2 py-1 rounded-full shadow-md">
+                {discount}%
               </div>
             )}
           </div>

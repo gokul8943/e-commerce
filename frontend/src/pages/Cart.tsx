@@ -1,6 +1,8 @@
 import { ShoppingBag, ArrowLeft } from 'lucide-react';
 import CartProductCard from '../components/CartProductCard';
 import CartPaymentDetails from '../components/CartPaymentDetails';
+import image from '../assets/images/airdopes1.png'
+import image2 from '../assets/images/category image.png'
 
 const Cart = () => {
  
@@ -11,7 +13,7 @@ const Cart = () => {
       price: 199.99,
       originalPrice: 249.99,
       quantity: 1,
-      image: "/api/placeholder/200/200",
+      image: image,
       color: "Space Gray",
       size: "One Size",
       brand: "TechPro",
@@ -23,7 +25,7 @@ const Cart = () => {
       price: 159.99,
       originalPrice: 199.99,
       quantity: 1,
-      image: "/api/placeholder/200/200",
+      image: image2,
       color: "Black",
       size: "Standard",
       brand: "FitTech",
