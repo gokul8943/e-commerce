@@ -1,6 +1,6 @@
 import express from "express";
 import dotenv from 'dotenv'
-import { DbConnection } from "./config/db";
+import { DbConnection } from '../frameworks/config/db';
 import userRouter from "./routes/user.routes";
 import cors from 'cors'
 

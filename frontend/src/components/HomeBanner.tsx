@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/Button";
 import { ArrowRight, Star } from "lucide-react";
+import { useNavigate } from 'react-router-dom';
 
 const HomeBanner = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const navigate = useNavigate();
   const slides = [
     {
       title: "Summer Collection 2025",
@@ -74,6 +76,7 @@ const HomeBanner = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up" style={{ animationDelay: "0.4s" }}>
             <Button 
+            onClick={() => navigate('/shop')}
               size="lg"
               className="bg-white text-gray-900 hover:bg-gray-100 font-semibold group transition-all duration-300"
             >
