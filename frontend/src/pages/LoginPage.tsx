@@ -3,9 +3,11 @@ import { Input } from "@/components/ui/Input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
 import { Label } from "@/components/ui/Label";
 import { Separator } from "@/components/ui/Separator";
-import { Github, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const handleSubmit = (e:any) => {
     e.preventDefault();
     // Add your login logic here
@@ -75,10 +77,6 @@ const LoginPage = () => {
               </div>
               <div className="grid gap-4">
                 <Button variant="outline" className="w-full">
-                  <Github className="mr-2 h-4 w-4" />
-                  Login with Github
-                </Button>
-                <Button variant="outline" className="w-full">
                   <Mail className="mr-2 h-4 w-4" />
                   Login with Google
                 </Button>
@@ -88,7 +86,7 @@ const LoginPage = () => {
           <CardFooter className="flex justify-center">
             <p className="text-sm text-gray-500">
               Don't have an account?{" "}
-              <Button variant="link" className="px-1">
+              <Button onClick={()=> navigate('/sign-up')} variant="link" className="px-1">
                 Sign up
               </Button>
             </p>

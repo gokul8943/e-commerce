@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/Input";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from "@/components/ui/Card";
 import { Label } from "@/components/ui/Label";
 import { Separator } from "@/components/ui/Separator";
-import { Github, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import { useState } from "react";
 import {message} from 'antd'
 import { useNavigate } from "react-router-dom";
@@ -66,6 +66,8 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                       id="firstName"
                       placeholder="Name"
                       required
+                      onChange={handleInputChange}
+                      name="name"
                     />
                   </div>
                 </div>
@@ -77,6 +79,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     type="email"
                     placeholder="email"
                     required
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -87,6 +90,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     type="password"
                     placeholder="password"
                     required
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -97,6 +101,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     type="password"
                     placeholder="password"
                     required
+                    onChange={handleInputChange}
                   />
                 </div>
 
@@ -136,10 +141,6 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                {/* Social Signup Buttons */}
                <div className="grid gap-4">
                 <Button variant="outline" className="w-full">
-                  <Github className="mr-2 h-4 w-4" />
-                  Sign up with Github
-                </Button>
-                <Button variant="outline" className="w-full">
                   <Mail className="mr-2 h-4 w-4" />
                   Sign up with Google
                 </Button>
@@ -149,7 +150,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           <CardFooter className="flex justify-center">
             <p className="text-sm text-gray-500">
               Already have an account?{" "}
-              <Button variant="link" className="px-1">
+              <Button onClick={()=> navigate('/sign-in')}variant="link" className="px-1">
                 Sign in
               </Button>
             </p>

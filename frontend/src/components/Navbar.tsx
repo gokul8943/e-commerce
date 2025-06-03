@@ -42,6 +42,8 @@ const Navbar = () => {
     navigate('/cart')
   }
 
+  const isUser = false;
+
   return (
     <nav className="border-b fixed z-20 w-full shadow-md bg-white/90">
       {/* Main Navbar */}
@@ -55,12 +57,12 @@ const Navbar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-3">
-            <Button onClick={handleHome} variant="ghost" className='text-blue-600 text-base font-bold drop-shadow-2xl cursor-pointer'>Home</Button>
-            <Button onClick={handleShop} variant="ghost" className='text-blue-600 text-base font-bold drop-shadow-2xl cursor-pointer'>Shop</Button>
+            <Button onClick={handleHome} variant="ghost" className='text-black text-base font-semibold drop-shadow-2xl cursor-pointer'>Home</Button>
+            <Button onClick={handleShop} variant="ghost" className='text-black text-base font-semibold drop-shadow-2xl cursor-pointer'>Shop</Button>
             {/* Categories Dropdown */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className='text-blue-600 text-base font-bold drop-shadow-2xl cursor-pointer'>Categories</Button>
+                <Button variant="ghost" className='text-black text-base font-semibold drop-shadow-2xl cursor-pointer'>Categories</Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent>
                 {categories.map((category) => (
@@ -83,24 +85,32 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-
           {/* Right Side Icons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="icon" className='cursor-pointer'>
-              <Heart className="h-5 w-5" />
-            </Button>
-            <Button variant="ghost" size="icon" className='cursor-pointer'>
-              <User className="h-8 w-8 " />
-            </Button>
-            <Button onClick={handleCart} variant="ghost" size="icon" className="relative cursor-pointer">
-              <ShoppingCart className="h-7 w-7" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-blue-700 text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </Button>
+            {isUser ? (
+              <>
+                <Button variant="ghost" size="icon" className='cursor-pointer'>
+                  <Heart className="h-5 w-5" />
+                </Button>
+                <Button variant="ghost" size="icon" className='cursor-pointer'>
+                  <User className="h-8 w-8" />
+                </Button>
+                <Button onClick={handleCart} variant="ghost" size="icon" className="relative cursor-pointer">
+                  <ShoppingCart className="h-7 w-7" />
+                  {cartCount > 0 && (
+                    <span className="absolute -top-1 -right-1 bg-blue-700 text-primary-foreground rounded-full w-5 h-5 text-xs flex items-center justify-center">
+                      {cartCount}
+                    </span>
+                  )}
+                </Button>
+              </>
+            ) : (
+              <Button variant="default" onClick={() => navigate('/sign-in')}>
+                Login
+              </Button>
+            )}
           </div>
+
 
           {/* Mobile Menu Button */}
           <Button
