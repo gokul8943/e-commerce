@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { SignUp } from "../../usecases/Auth/SignUp";
 import bcrypt from "bcryptjs/types";
 import { SignIn } from "../../usecases/Auth/SignIn";
+import jwt from 'jsonwebtoken'
 
-const jwtSecret = process.env.JWT_SECRET;
+const jwtSecret: any = process.env.JWT_SECRET;
 export class AuthController {
     constructor(
         private readonly signUpUseCase: SignUp,
@@ -54,7 +55,7 @@ export class AuthController {
                 user: userWithoutPassword
             });
         } catch (error) {
-
+            console.log(error);
         }
     }
 }
