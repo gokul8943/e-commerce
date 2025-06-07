@@ -1,23 +1,10 @@
 import mongoose, { Document, Schema, Model } from "mongoose";
 import bcrypt from "bcryptjs";
+import { IUserSchema } from "../../../adapters/interfaces/IUserSchema";
 
 // Define the User interface extending Mongoose's Document
-interface CartItem {
-    quantity: number;
-    product: mongoose.Types.ObjectId;
-}
 
-export interface IUser extends Document {
-    name: string;
-    email: string;
-    password: string;
-    phone: string,
-    cart: CartItem[];
-    role: "user" | "admin";
-    comparePassword(password: string): Promise<boolean>;
-}
-
-const userSchema: Schema<IUser> = new Schema(
+const userSchema: Schema<IUserSchema> = new Schema(
     {
         name: {
             type: String,
@@ -63,7 +50,7 @@ const userSchema: Schema<IUser> = new Schema(
 );
 
 // Pre-save hook to hash password before saving to the database
-userSchema.pre<IUser>("save", async function (next) {
+userSchema.pre<IUserSchema>("save", async function (next) {
     if (!this.isModified("password")) return next();
     try {
         const salt = await bcrypt.genSalt(10);
@@ -79,6 +66,6 @@ userSchema.methods.comparePassword = async function (password: string): Promise<
     return await bcrypt.compare(password, this.password);
 };
 
-const User: Model<IUser> = mongoose.model<IUser>("User", userSchema);
+const User: Model<IUserSchema> = mongoose.model<IUserSchema>("User", userSchema);
 
 export default User;
