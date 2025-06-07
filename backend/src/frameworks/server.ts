@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from 'dotenv'
 import { DbConnection } from '../frameworks/config/db';
-import userRouter from "./routes/user.routes";
+
 import cors from 'cors'
 
 dotenv.config()
@@ -20,7 +20,7 @@ const corsOptions = {
 app.use(express.json({ limit: '20mb' }));
 app.use(express.urlencoded({ limit: '20mb', extended: true }));
 app.use(cors(corsOptions))
-app.use('/api/user', userRouter)
+// app.use('/api/user', userRouter)
 
 app.listen(port, () => {
     console.log(`Server is running on the port ${port}`)

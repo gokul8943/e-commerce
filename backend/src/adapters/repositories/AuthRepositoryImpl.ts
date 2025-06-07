@@ -17,4 +17,13 @@ export class AuthRepositoryImpl implements AuthRepository {
             console.log(error);
         }
     }
+
+    async signIn(email: string): Promise<any> {
+        try {
+            const user = await this.UserModel.findOne({ email })
+            return user
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
