@@ -28,3 +28,5 @@ router.post('/sign-in', async(req, res) =>{
         res.status(500).json({ message: "Error in routes", error  })
     }
 });
+
+export default router

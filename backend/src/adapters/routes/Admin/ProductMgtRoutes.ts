@@ -23,3 +23,4 @@ router.post('/add-product', async (req, res) => {
         
     }
 })
+export default router

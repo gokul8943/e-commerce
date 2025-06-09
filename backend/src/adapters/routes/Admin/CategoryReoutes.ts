@@ -39,3 +39,5 @@ router.post('/delete-category', async (req, res) => {
         
     }
 })
+
+export default router
