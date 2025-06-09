@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import { AddCategory } from "../../../usecases/Admin/Category/Addcategory";
 import { DeleteCategory } from "../../../usecases/Admin/Category/DeleteCategory";
 import { UpdateCategory } from "../../../usecases/Admin/Category/UpdateCategory";
@@ -9,7 +10,7 @@ export class CategoryController {
         private readonly deleteCategoryUseCase: DeleteCategory
     ) { }
 
-    async addCategory(req: any, res: any) {
+    async addCategory(req: Request, res: Response) {
         const { data } = req.body
         try {
             const category = await this.addCategoryUseCase.execute(data);
@@ -23,7 +24,7 @@ export class CategoryController {
         }
     }
 
-    async updateCategory(req: any, res: any) {
+    async updateCategory(req: Request, res: Response) {
         const { categoryId } = req.params
         const { data } = req.body
         try {
@@ -38,7 +39,7 @@ export class CategoryController {
         }
     }
 
-    async deleteCategory(req: any, res: any) {
+    async deleteCategory(req: Request, res: Response) {
         const { categoryId } = req.params
         try {
             const category = await this.deleteCategoryUseCase.execute({}, categoryId);
