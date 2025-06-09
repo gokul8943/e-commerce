@@ -9,7 +9,7 @@ export class OtpRepositoryImpl implements OtpRepository {
         this.OtpModel = otpModel;
     }
 
-    async createOtp(email: string, otp: string): Promise<any> {
+    async generateOtp(email: string, otp: string): Promise<any> {
         try {
             const result = await this.OtpModel.findOneAndUpdate(
                 { email },

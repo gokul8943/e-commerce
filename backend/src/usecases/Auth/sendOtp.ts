@@ -6,6 +6,6 @@ export class GenerateOtp {
 
     async execute(email: string,otp:string): Promise<any> {
         await sendOtpEmail(email, otp);
-        return this.otpRepository.createOtp(email,otp);
+        return this.otpRepository.generateOtp(email,otp);
     }
 }

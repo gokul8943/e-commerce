@@ -7,10 +7,11 @@ import { SignIn } from "../../usecases/Auth/SignIn";
 import { GenerateOtp } from "../../usecases/Auth/sendOtp";
 import { VerifyOtp } from "../../usecases/Auth/verifyOtp";
 import otpModel from "../../frameworks/models/otp/otp.model";
+import { OtpRepositoryImpl } from "../repositories/OtpRepositoryImpl";
 
 
 const authRepository = new AuthRepositoryImpl(userModel);
-const otpRepository = new AuthRepositoryImpl(otpModel);
+const otpRepository = new OtpRepositoryImpl(otpModel);
 const signUp = new SignUp(authRepository); 
 const signIn = new SignIn(authRepository);
 const generateOtp = new GenerateOtp(otpRepository);
