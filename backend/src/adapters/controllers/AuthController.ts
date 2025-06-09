@@ -1,14 +1,20 @@
 import { Request, Response } from "express";
 import { SignUp } from "../../usecases/Auth/SignUp";
-import bcrypt from "bcryptjs/types";
+import bcrypt from "bcryptjs";
 import { SignIn } from "../../usecases/Auth/SignIn";
 import jwt from 'jsonwebtoken'
+import { generateOtp } from "../../utils/generateOtp";
+import { sendOtpEmail } from "../../utils/sendOtptoMail";
+import { GenerateOtp } from "../../usecases/Auth/sendOtp";
+import { VerifyOtp } from "../../usecases/Auth/verifyOtp";
 
 const jwtSecret: any = process.env.JWT_SECRET;
 export class AuthController {
     constructor(
         private readonly signUpUseCase: SignUp,
-        private readonly loginUseCase: SignIn
+        private readonly loginUseCase: SignIn,
+        private readonly generateOtpUseCase: GenerateOtp,
+        private readonly verifyOtpUseCase: VerifyOtp
     ) { }
 
     async signUp(req: Request, res: Response): Promise<any> {
@@ -26,7 +32,33 @@ export class AuthController {
             });
             return res.status(201).json({ message: "User registered. Verify OTP sent to email.", user });
         } catch (error) {
+            console.error("Sign Up controller Error:", error);
+            return res.status(500).json({ message: "Internal server error in controller" });
+        }
+    }
 
+    async sendOtp(req: Request, res: Response): Promise<any> {
+        try {
+            const { email } = req.body
+            if (!email) return res.status(400).json({ message: "Email is  required" })
+            const otp = generateOtp()
+            const sendMail = await sendOtpEmail(email, otp)
+            const generate = await this.generateOtpUseCase.execute(email, otp);
+            return res.status(200).json({ message: "OTP sent successfully", sendMail, generate });
+        } catch (error) {
+            console.error("Send OTP controller Error:", error);
+            return res.status(500).json({ message: "Internal server error in controller" });
+        }
+    }
+
+    async verifyOtp(req: Request, res: Response): Promise<any> {
+        try {
+            const { email, otp } = req.body
+            if (!email || !otp) return res.status(400).json({ message: "OTP is required" })
+            const verifyOtp = await this.verifyOtpUseCase.execute(email, otp);
+            return res.status(200).json({ message: "OTP verified successfully", verifyOtp });
+        } catch (error) {
+            
         }
     }
     async signIn(req: Request, res: Response): Promise<any> {
@@ -55,7 +87,8 @@ export class AuthController {
                 user: userWithoutPassword
             });
         } catch (error) {
-            console.log(error);
+            console.error("Sign In Controller Error:", error);
+            return res.status(500).json({ message: "Internal server error in controller" });
         }
     }
 }
