@@ -12,3 +12,5 @@ const CategorySchema = new Schema<ICategorySchema>(
 );
 
 export const Category = model<ICategorySchema>("Category", CategorySchema);
+
+export default Category
