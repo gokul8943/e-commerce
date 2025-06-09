@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { AddCategory } from "../../../usecases/Admin/Category/Addcategory";
+import { AddCategory } from "../../../usecases/Admin/Category/AddCategory";
 import { DeleteCategory } from "../../../usecases/Admin/Category/DeleteCategory";
 import { UpdateCategory } from "../../../usecases/Admin/Category/UpdateCategory";
 

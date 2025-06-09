@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { CategoryRepositoryImpl } from "../../repositories/Admin/CategoryRepositoryImpl";
 import { UpdateCategory } from "../../../usecases/Admin/Category/UpdateCategory";
-import { AddCategory } from "../../../usecases/Admin/Category/Addcategory";
+import { AddCategory } from "../../../usecases/Admin/Category/AddCategory";
 import { DeleteCategory } from "../../../usecases/Admin/Category/DeleteCategory";
 import { CategoryController } from "../../controllers/Admin/CategoryController";
 import  categoryModel  from "../../../frameworks/models/category/category.model";

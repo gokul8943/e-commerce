@@ -1,11 +1,12 @@
 import { Model } from "mongoose";
 import { ProductMgtRepository } from "../../interfaces/Admin/ProductMgtRepository";
+import { IProductSchema } from "../../interfaces/IProductSchema";
 
 
 export class ProductMgtRepositoryImpl implements ProductMgtRepository {
     private readonly ProductModel: any
 
-    constructor(productModel: Model<IproductSchema>) {
+    constructor(productModel: Model<IProductSchema>) {
         this.ProductModel = productModel
     }
 
