@@ -1,10 +1,11 @@
 import { Model } from "mongoose";
 import { CategoryRepository } from "../../interfaces/Admin/CategoryRepository";
+import { ICategorySchema } from "../../interfaces/ICategorySchema";
 
 
 export class CategoryRepositoryImpl implements CategoryRepository{
-    private readonly categoryModel: Model<IcategorySchema>
-    constructor (categoryModel: Model<IcategorySchema>){
+    private readonly categoryModel: Model<ICategorySchema>
+    constructor (categoryModel: Model<ICategorySchema>){
         this.categoryModel = categoryModel
      }
 
