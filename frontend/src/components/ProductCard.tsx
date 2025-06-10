@@ -82,7 +82,7 @@ const ProductCard = ({
         </div>
         
         {/* Add to Cart Button */}
-        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
+        <button className="w-full bg-slate-900 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors">
           <ShoppingCart className="w-5 h-5" />
           Add to Cart
         </button>

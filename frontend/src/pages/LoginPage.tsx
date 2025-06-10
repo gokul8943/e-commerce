@@ -61,7 +61,7 @@ const LoginPage = () => {
                     Forgot password?
                   </Button>
                 </div>
-                <Button type="submit" className="w-full bg-blue-700">
+                <Button type="submit" className="w-full bg-slate-900">
                   Sign in
                 </Button>
               </form>

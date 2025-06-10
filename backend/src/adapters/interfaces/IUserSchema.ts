@@ -9,6 +9,7 @@ export interface IUserSchema extends Document {
     email: string;
     password: string;
     phone: string,
+    address: mongoose.Types.ObjectId
     cart: CartItem[];
     role: "user" | "admin";
     comparePassword(password: string): Promise<boolean>;

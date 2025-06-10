@@ -52,7 +52,7 @@ const Navbar = () => {
           {/* Logo and Brand */}
           <div onClick={handleHome} className="flex items-center space-x-2 cursor-pointer">
             <ShoppingBag className="h-6 w-6 text-primary" />
-            <span className="text-xl font-bold text-blue-700">ShopHub</span>
+            <span className="text-xl font-bold text-gray-900">ShopHub</span>
           </div>
 
           {/* Desktop Navigation */}

@@ -124,7 +124,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                   </Label>
                 </div>
 
-                <Button type="submit" className="w-full bg-blue-700">
+                <Button type="submit" className="w-full bg-slate-900">
                   Create Account
                 </Button>
               </form>

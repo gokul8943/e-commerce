@@ -26,6 +26,10 @@ const userSchema: Schema<IUserSchema> = new Schema(
             type: String,
             required: [true, "Phone number is requied"]
         },
+        address: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Address",
+        },
         cart: [
             {
                 quantity: {
@@ -38,6 +42,7 @@ const userSchema: Schema<IUserSchema> = new Schema(
                 },
             },
         ],
+
         role: {
             type: String,
             enum: ["user", "admin"],
