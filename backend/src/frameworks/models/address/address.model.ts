@@ -17,7 +17,6 @@ const addressSchema = new Schema<IAddressSchema>(
         isDefault: { type: Boolean, default: false },
         addressType: {
             type: String,
-            enum: ['home', 'work', 'other'],
             default: 'home',
         },
 
@@ -29,3 +28,5 @@ const addressSchema = new Schema<IAddressSchema>(
 );
 
 export const AddressModel = model<IAddressSchema>('Address', addressSchema);
+
+export default AddressModel
