@@ -1,5 +1,7 @@
+import { OtpRepository } from "../../adapters/interfaces/OtpRepository";
+
 export class VerifyOtp {
-    constructor(private otpRepository: any) {}
+    constructor(private otpRepository: OtpRepository) {}
 
     async execute(email: string, otp: number) {
         const otpRecord = await this.otpRepository.verifyOtp(email, otp);

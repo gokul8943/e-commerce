@@ -21,7 +21,8 @@ export class AddressController{
                 return res.status(200).json({ message: "Address added successfully" })
             }
         } catch (error) {
-            console.log(error);
+            console.error("Address controller Error:", error);
+            return res.status(500).json({ message: "Internal server error in controller" });
         }
     }
 
@@ -37,7 +38,8 @@ export class AddressController{
             }
             res.status(200).json(address);
         } catch (error) {
-            console.log(error);
+              console.error("Address controller Error:", error);
+            return res.status(500).json({ message: "Internal server error in controller" });
         }
     }
 
@@ -52,7 +54,8 @@ export class AddressController{
             }
             res.status(200).json(address);
         } catch (error) {
-            console.log(error);
+             console.error("Address controller Error:", error);
+            return res.status(500).json({ message: "Internal server error in controller" });
         }
     }
 }
