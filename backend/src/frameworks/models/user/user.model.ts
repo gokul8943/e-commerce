@@ -24,7 +24,7 @@ const userSchema: Schema<IUserSchema> = new Schema(
         },
         phone: {
             type: String,
-            required: [true, "Phone number is requied"]
+             default: null
         },
         address: {
             type: mongoose.Schema.Types.ObjectId,

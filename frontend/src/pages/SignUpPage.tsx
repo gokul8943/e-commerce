@@ -15,7 +15,6 @@ const SignupPage = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    phone: "",
     password: "",
     confirmPassword: ""
 })
@@ -77,6 +76,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                   <Input
                     id="email"
                     type="email"
+                    name="email"
                     placeholder="email"
                     required
                     onChange={handleInputChange}
@@ -88,6 +88,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                   <Input
                     id="password"
                     type="password"
+                    name="password"
                     placeholder="password"
                     required
                     onChange={handleInputChange}
@@ -99,6 +100,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                   <Input
                     id="confirmPassword"
                     type="password"
+                    name="confirmPassword"
                     placeholder="password"
                     required
                     onChange={handleInputChange}
