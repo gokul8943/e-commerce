@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/Label";
 import { Separator } from "@/components/ui/Separator";
 import { Mail } from "lucide-react";
 import { useState } from "react";
-import {message} from 'antd'
+import { message } from 'antd'
 import { useNavigate } from "react-router-dom";
 import { register } from "@/services/user/user.api";
 
@@ -17,37 +17,37 @@ const SignupPage = () => {
     email: "",
     password: "",
     confirmPassword: ""
-})
+  })
 
-const handleInputChange = (e: any) => {
-  const { name, value } = e.target;
-  setFormData({ ...formData, [name]: value });
-};
-const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault()
-  try {
+  const handleInputChange = (e: any) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+    try {
       register(formData)
-          .then((response) => {
-              console.log('drres',response);
-              
-              if (response.status === 200 || response.status === 201) {
-                  message.success("Register Sucessfully",),
-                      navigate("/user/login");
-              }
-          })
-          .catch((error) => {
-              console.log(error);
-              message.error(error.response.data.message);
-          })
-  } catch (error) {
+        .then((response) => {
+          console.log('drres', response);
+
+          if (response.status === 200 || response.status === 201) {
+            message.success("Register Sucessfully",),
+              navigate("/user/login");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          message.error(error.response.data.message);
+        })
+    } catch (error) {
       console.log(error);
       message.error("Internal server error")
+    }
   }
-}
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-      <div className="max-w-md w-full">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-md mx-auto">
         {/* Logo and Header */}
         <Card>
           <CardHeader>
@@ -70,17 +70,19 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                     />
                   </div>
                 </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    type="email"
-                    name="email"
-                    placeholder="email"
-                    required
-                    onChange={handleInputChange}
-                  />
+                <div className="flex items-end justify-between gap-4">
+                  <div className="flex-1 space-y-2">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      type="email"
+                      name="email"
+                      placeholder="Enter your email"
+                      required
+                      onChange={handleInputChange}
+                    />
+                  </div>
+                  <Button className="bg-slate-900">Verify</Button>
                 </div>
 
                 <div className="space-y-2">
@@ -107,25 +109,6 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                   />
                 </div>
 
-                <div className="flex items-center space-x-2">
-                  <input
-                    type="checkbox"
-                    id="terms"
-                    className="h-4 w-4 rounded border-gray-300"
-                    required
-                  />
-                  <Label htmlFor="terms" className="text-sm">
-                    I agree to the{" "}
-                    <Button variant="link" className="px-1 h-auto">
-                      Terms of Service
-                    </Button>
-                    {" "}and{" "}
-                    <Button variant="link" className="px-1 h-auto ">
-                      Privacy Policy
-                    </Button>
-                  </Label>
-                </div>
-
                 <Button type="submit" className="w-full bg-slate-900">
                   Create Account
                 </Button>
@@ -140,8 +123,8 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
                   </span>
                 </div>
               </div>
-               {/* Social Signup Buttons */}
-               <div className="grid gap-4">
+              {/* Social Signup Buttons */}
+              <div className="grid gap-4">
                 <Button variant="outline" className="w-full">
                   <Mail className="mr-2 h-4 w-4" />
                   Sign up with Google
@@ -152,7 +135,7 @@ const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
           <CardFooter className="flex justify-center">
             <p className="text-sm text-gray-500">
               Already have an account?{" "}
-              <Button onClick={()=> navigate('/sign-in')}variant="link" className="px-1">
+              <Button onClick={() => navigate('/sign-in')} variant="link" className="px-1">
                 Sign in
               </Button>
             </p>
