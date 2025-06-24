@@ -36,4 +36,20 @@ router.post('/sign-in', async(req, res) =>{
     }
 });
 
+
+router.post('/send-otp', async (req, res) => {
+    try {
+        authController.sendOtp(req, res)
+    } catch (error) {
+        res.status(500).json({ message: "Error in routes", error })
+    }
+})
+
+router.get('/verify-otp', async (req, res) => {
+    try {
+        authController.verifyOtp(req, res)
+    } catch (error) {
+        res.status(500).json({ message: "Error in routes", error })
+    }
+})
 export default router

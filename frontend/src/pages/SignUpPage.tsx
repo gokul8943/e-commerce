@@ -5,50 +5,66 @@ import { Label } from "@/components/ui/Label";
 import { Separator } from "@/components/ui/Separator";
 import { Mail } from "lucide-react";
 import { useState } from "react";
-import { message } from 'antd'
+import { message } from 'antd';
 import { useNavigate } from "react-router-dom";
-import { register } from "@/services/user/user.api";
+import { register, sendOtp } from "@/services/user/user.api";
+import VerifyOtp from "@/components/modals/VerifyOtp";
 
 const SignupPage = () => {
+  const navigate = useNavigate();
+  const [otpModalOpen, setOtpModalOpen] = useState(false);
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
 
-  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
     confirmPassword: ""
-  })
+  });
 
   const handleInputChange = (e: any) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    try {
-      register(formData)
-        .then((response) => {
-          console.log('drres', response);
 
-          if (response.status === 200 || response.status === 201) {
-            message.success("Register Sucessfully",),
-              navigate("/user/login");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-          message.error(error.response.data.message);
-        })
-    } catch (error) {
-      console.log(error);
-      message.error("Internal server error")
+  const handleSendOtp = async () => {
+    if (!formData.email) {
+      return message.warning("Please enter your email first.");
     }
-  }
+
+    try {
+      const response = await sendOtp({ email: formData.email });
+      if (response.status === 200) {
+        message.success("OTP sent to your email.");
+        setOtpModalOpen(true);
+      }
+    } catch (error: any) {
+      message.error(error?.response?.data?.message || "Failed to send OTP.");
+    }
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!isEmailVerified) {
+      return message.warning("Please verify your email before submitting.");
+    }
+
+    register(formData)
+      .then((response) => {
+        if (response.status === 200 || response.status === 201) {
+          message.success("Registered successfully");
+          navigate("/user/login");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        message.error(error.response.data.message);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-md mx-auto">
-        {/* Logo and Header */}
         <Card>
           <CardHeader>
             <CardTitle>Create your account</CardTitle>
@@ -56,20 +72,18 @@ const SignupPage = () => {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              {/* Email Signup Form */}
               <form onSubmit={handleSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 gap-4">
-                  <div className="space-y-2">
-                    <Label htmlFor="firstName">Name</Label>
-                    <Input
-                      id="firstName"
-                      placeholder="Name"
-                      required
-                      onChange={handleInputChange}
-                      name="name"
-                    />
-                  </div>
+                <div className="space-y-2">
+                  <Label htmlFor="name">Name</Label>
+                  <Input
+                    id="name"
+                    placeholder="Name"
+                    required
+                    name="name"
+                    onChange={handleInputChange}
+                  />
                 </div>
+
                 <div className="flex items-end justify-between gap-4">
                   <div className="flex-1 space-y-2">
                     <Label htmlFor="email">Email</Label>
@@ -80,9 +94,16 @@ const SignupPage = () => {
                       placeholder="Enter your email"
                       required
                       onChange={handleInputChange}
+                      value={formData.email}
                     />
                   </div>
-                  <Button className="bg-slate-900">Verify</Button>
+                  <Button
+                    type="button"
+                    className="bg-slate-900"
+                    onClick={handleSendOtp}
+                  >
+                    Verify
+                  </Button>
                 </div>
 
                 <div className="space-y-2">
@@ -91,7 +112,7 @@ const SignupPage = () => {
                     id="password"
                     type="password"
                     name="password"
-                    placeholder="password"
+                    placeholder="Password"
                     required
                     onChange={handleInputChange}
                   />
@@ -103,7 +124,7 @@ const SignupPage = () => {
                     id="confirmPassword"
                     type="password"
                     name="confirmPassword"
-                    placeholder="password"
+                    placeholder="Confirm password"
                     required
                     onChange={handleInputChange}
                   />
@@ -113,6 +134,7 @@ const SignupPage = () => {
                   Create Account
                 </Button>
               </form>
+
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <Separator />
@@ -123,25 +145,34 @@ const SignupPage = () => {
                   </span>
                 </div>
               </div>
-              {/* Social Signup Buttons */}
-              <div className="grid gap-4">
-                <Button variant="outline" className="w-full">
-                  <Mail className="mr-2 h-4 w-4" />
-                  Sign up with Google
-                </Button>
-              </div>
+
+              <Button variant="outline" className="w-full">
+                <Mail className="mr-2 h-4 w-4" />
+                Sign up with Google
+              </Button>
             </div>
           </CardContent>
           <CardFooter className="flex justify-center">
             <p className="text-sm text-gray-500">
               Already have an account?{" "}
-              <Button onClick={() => navigate('/sign-in')} variant="link" className="px-1">
+              <Button onClick={() => navigate("/sign-in")} variant="link" className="px-1">
                 Sign in
               </Button>
             </p>
           </CardFooter>
         </Card>
       </div>
+
+      {/* OTP Modal */}
+      <VerifyOtp
+        open={otpModalOpen}
+        setOpen={setOtpModalOpen}
+        email={formData.email}
+        onVerified={() => {
+          setIsEmailVerified(true);
+          message.success("Email verified!");
+        }}
+      />
     </div>
   );
 };
