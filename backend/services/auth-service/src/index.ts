@@ -5,5 +5,5 @@ const port = process.env.PORT
 
 
 app.listen(port, () => {
-    console.log('Auth Service listening on port 3000');
+    console.log('Auth Service listening on port 5001');
 });
