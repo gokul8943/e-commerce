@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PORT
 
 app.use(express.json());
-
+app.use(express.urlencoded({ extended: true }));
 
 app.listen(port, () => {
     console.log(`API Gateway listening on port ${port}`);
