@@ -5,7 +5,7 @@ dotenv.config();
 
 
 const app = express();
-const port = process.env.PORT || 5002;
+const port = process.env.PORT;
 
 app.listen(port, () => {
     console.log(`order Service listening on port ${port}`);

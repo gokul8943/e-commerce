@@ -105,7 +105,7 @@
     "yn": "^3.1.1"
   },
   "scripts": {
-    "dev": "nodemon --watch src --ext ts --exec \"tsx src/index.ts\"",
+    "dev": "nodemon --watch src --ext ts --exec \"tsx index.ts\"",
     "build": "tsc",
     "start": "node dist/index.js"
   },
